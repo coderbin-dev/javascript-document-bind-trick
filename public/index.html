@@ -25,26 +25,16 @@
 </body>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+    const el = document.createElement.bind(document);
 
-    const form = document.querySelector('form#itemForm');
-    const statusEl = document.querySelector('p.status');
-
-    form.addEventListener('submit', e => {
+    $('form#itemForm').addEventListener('submit', e => {
       e.preventDefault();
-      const val = e.target.itemName.value;
-
-      const ulTodoList = document.querySelector('#todoList');
-      const li = document.createElement('li');
-      li.textContent = val;
-      ulTodoList.appendChild(li);
-
-      statusEl.style.display = 'block';
-
-      const allItems = document.querySelectorAll('li');
-      document.querySelector('p.status span').textContent = allItems.length;
-
+      $('#todoList').appendChild(el('li')).textContent = e.target.itemName.value;
+      $('p.status').style.display = 'block';
+      $('p.status span').textContent = $$('li').length;
       e.target.itemName.value = '';
-
     });
   });
 </script>
