@@ -23,4 +23,29 @@
   </form>
 
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    const form = document.querySelector('form#itemForm');
+    const statusEl = document.querySelector('p.status');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const val = e.target.itemName.value;
+
+      const ulTodoList = document.querySelector('#todoList');
+      const li = document.createElement('li');
+      li.textContent = val;
+      ulTodoList.appendChild(li);
+
+      statusEl.style.display = 'block';
+
+      const allItems = document.querySelectorAll('li');
+      document.querySelector('p.status span').textContent = allItems.length;
+
+      e.target.itemName.value = '';
+
+    });
+  });
+</script>
 </html>
