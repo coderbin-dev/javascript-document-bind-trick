@@ -1,0 +1,22 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+fieldset {
+  border: 1px solid #0076a3;
+  border-radius: 3px;
+}
+input[type="text"] {
+  border-radius: 3px;
+  border: 1px solid #00B7FF;
+}
+input[type="submit"] {
+  background: #ade6fd;
+  border: 1px solid #00B7FF;
+  border-radius: 10px;
+  padding: 2px 10px;
+}
