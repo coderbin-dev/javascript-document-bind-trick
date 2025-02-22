@@ -1,11 +1,9 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <title>document.bind trick</title>
   <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
   <h1>The document.bind trick</h1>
   <p>This is just a demo for plain javascript.</p>
@@ -29,13 +27,34 @@
     const $$ = document.querySelectorAll.bind(document);
     const el = document.createElement.bind(document);
 
-    $('form#itemForm').addEventListener('submit', e => {
+    $('#itemForm').addEventListener('submit', e => {
       e.preventDefault();
-      $('#todoList').appendChild(el('li')).textContent = e.target.itemName.value;
+
+      const inputBox = e.target.itemName;
+      const ul = $('#todoList');
+
+      const li = ul.appendChild(el('li'));
+      li.textContent = inputBox.value;
+
+      const deleteButton = li.appendChild(el('button'));
+      deleteButton.type = 'button';
+      deleteButton.textContent = 'x';
+      deleteButton.addEventListener('click', e => {
+        ul.removeChild(e.target.closest('li'));
+        updateItemCount();
+      });
+
+      inputBox.value = '';
+
       $('p.status').style.display = 'block';
-      $('p.status span').textContent = $$('li').length;
-      e.target.itemName.value = '';
+
+      updateItemCount();
     });
+
+    function updateItemCount() {
+      $('span.itemCount').textContent = $$('#todoList li').length;
+    }
+
   });
 </script>
 </html>
